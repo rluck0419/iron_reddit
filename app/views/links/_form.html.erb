@@ -1,0 +1,25 @@
+<div><h3><%= form_title %></h3></div>
+
+<div>
+  <% if link.errors.any? %>
+    <% link.errors.full_messages.each do |msg| %>
+      <p> <%= msg %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_for(link) do |f| %>
+    <div>
+      <label for="title">Title: </label>
+      <%= f.text_area :title, placeholder: Faker::Pokemon.name, class: 'form-field' %>
+    </div>
+    <div>
+      <label for="url">Url: </label>
+      <%= f.text_area :title, placeholder: "www.#{Faker::Name.name.downcase.gsub(/[. ]/, '')}.com", class: 'form-field' %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

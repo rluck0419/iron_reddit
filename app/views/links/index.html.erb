@@ -1,0 +1,7 @@
+<h1>links:</h1>
+<% links.each do |link| %>
+  <div><%= link_to link.title, link %></div>
+  <div><%= link.url %></div>
+  <div><%= link.votes.count %> votes</div>
+  <br>
+<% end %>
