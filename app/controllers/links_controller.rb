@@ -32,7 +32,7 @@ class LinksController < ApplicationController
     if Link.find(params[:id])
       link = Link.find(params[:id])
       if link.update(link_params)
-        redirect_to teacher
+        redirect_to link
       else
         render :edit
       end
