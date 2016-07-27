@@ -1,3 +1,6 @@
+<%= link_to "new link", new_link_path %>
+<%= link_to "new vote", new_vote_path %>
+
 <h1>links:</h1>
 <% links.each do |link| %>
   <div><%= link_to link.title, link %></div>
@@ -5,3 +8,5 @@
   <div><%= link.votes.count %> votes</div>
   <br>
 <% end %>
+
+<%= paginate links %>

@@ -18,7 +18,7 @@ class VotesController < ApplicationController
   def create
     vote = Vote.new(vote_params)
     if vote.save
-      redirect_to vote
+      redirect_to "/links/#{vote.link_id}"
     else
       render :new
     end
@@ -52,7 +52,7 @@ class VotesController < ApplicationController
   end
 
   private
-  def vote_param
+  def vote_params
     params.require(:vote).permit(:link_id)
   end
 end
