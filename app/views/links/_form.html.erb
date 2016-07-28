@@ -9,17 +9,21 @@
 </div>
 
 <div>
+
   <%= form_for(link) do |f| %>
     <div>
       <label for="title">Title: </label>
       <%= f.text_area :title, placeholder: Faker::Name.name, class: 'form-field' %>
     </div>
+
     <div>
       <label for="url">Url: </label>
-      <%= f.text_area :title, placeholder: "www.#{Faker::Name.name.downcase.gsub(/[. ]/, '')}.com", class: 'form-field' %>
+      <%= f.text_area :url, placeholder: "www.#{Faker::Name.name.downcase.gsub(/[. ]/, '')}.com", class: 'form-field' %>
     </div>
+
     <div>
       <%= f.submit %>
     </div>
   <% end %>
+
 </div>
