@@ -1,5 +1,6 @@
 class Link < ApplicationRecord
-  has_many :votes
+  has_many :upvotes
+  has_many :downvotes
   belongs_to :user
 
   validates :title, presence: true

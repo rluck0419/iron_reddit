@@ -1,4 +1,4 @@
-class VotesController < ApplicationController
+class UpvotesController < ApplicationController
   def index
     render locals: { votes: Vote.all }
   end

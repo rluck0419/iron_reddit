@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :downvotes
   resources :users
-  resources :votes
+  resources :upvotes
   resources :links
 
   root 'links#index'

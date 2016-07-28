@@ -10,18 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728190652) do
+ActiveRecord::Schema.define(version: 20160728200234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "downvotes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "link_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["link_id"], name: "index_downvotes_on_link_id", using: :btree
+    t.index ["user_id"], name: "index_downvotes_on_user_id", using: :btree
+  end
+
   create_table "links", force: :cascade do |t|
-    t.string   "title",      null: false
-    t.string   "url",        null: false
+    t.string   "title",                       null: false
+    t.string   "url",                         null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "user_id"
+    t.integer  "upvotes_count",   default: 0
+    t.integer  "downvotes_count", default: 0
+    t.index ["user_id"], name: "index_links_on_user_id", using: :btree
+  end
+
+  create_table "upvotes", force: :cascade do |t|
+    t.integer  "link_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.index ["user_id"], name: "index_links_on_user_id", using: :btree
+    t.index ["link_id"], name: "index_upvotes_on_link_id", using: :btree
+    t.index ["user_id"], name: "index_upvotes_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,18 +51,9 @@ ActiveRecord::Schema.define(version: 20160728190652) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "votes", force: :cascade do |t|
-    t.integer  "link_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "up_vote",    default: false
-    t.boolean  "down_vote",  default: false
-    t.integer  "user_id"
-    t.index ["link_id"], name: "index_votes_on_link_id", using: :btree
-    t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
-  end
-
+  add_foreign_key "downvotes", "links"
+  add_foreign_key "downvotes", "users"
   add_foreign_key "links", "users"
-  add_foreign_key "votes", "links"
-  add_foreign_key "votes", "users"
+  add_foreign_key "upvotes", "links"
+  add_foreign_key "upvotes", "users"
 end
