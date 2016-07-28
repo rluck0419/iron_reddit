@@ -8,7 +8,17 @@
 
 40.times do |i|
   link = Link.create!(title: Faker::Name.name, url: "www.#{Faker::Name.name.downcase.gsub(/[. ']/, '')}.com")
+
   rand(1..5).times do
-    Vote.create!(link: link)
+    up = false
+    down = false
+
+    if rand > 0.5
+      up = true
+    else
+      down = true
+    end
+
+    Vote.create!(link: link, up_vote: up, down_vote: down)
   end
 end
