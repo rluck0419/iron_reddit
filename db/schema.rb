@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728200234) do
+ActiveRecord::Schema.define(version: 20160728211547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "boards", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "downvotes", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,6 +38,8 @@ ActiveRecord::Schema.define(version: 20160728200234) do
     t.integer  "user_id"
     t.integer  "upvotes_count",   default: 0
     t.integer  "downvotes_count", default: 0
+    t.integer  "board_id"
+    t.index ["board_id"], name: "index_links_on_board_id", using: :btree
     t.index ["user_id"], name: "index_links_on_user_id", using: :btree
   end
 
@@ -53,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160728200234) do
 
   add_foreign_key "downvotes", "links"
   add_foreign_key "downvotes", "users"
+  add_foreign_key "links", "boards"
   add_foreign_key "links", "users"
   add_foreign_key "upvotes", "links"
   add_foreign_key "upvotes", "users"
