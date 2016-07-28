@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 40.times do |i|
-  link = Link.create!(title: Faker::Name.name, url: "www.#{Faker::Name.name.downcase.gsub(/[. ']/, '')}.com")
+  user = User.create!(email: "user#{i+1}@example.com", password: "password")
+  link = Link.create!(title: Faker::Name.name, url: "www.#{Faker::Name.name.downcase.gsub(/[. ']/, '')}.com", user: user)
 
   rand(1..5).times do
     up = false
@@ -19,6 +21,6 @@
       down = true
     end
 
-    Vote.create!(link: link, up_vote: up, down_vote: down)
+    Vote.create!(user_id: user.id, link: link, up_vote: up, down_vote: down)
   end
 end
