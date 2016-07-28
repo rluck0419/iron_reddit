@@ -6,6 +6,8 @@ class Link < ApplicationRecord
   validates :title, presence: true
   validates :url, presence: true
   validates :user_id, presence: true
+  validates :upvotes_count, presence: true
+  validates :downvotes_count, presence: true
 
   paginates_per 20
 
