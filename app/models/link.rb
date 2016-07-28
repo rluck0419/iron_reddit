@@ -9,9 +9,9 @@ class Link < ApplicationRecord
 
   paginates_per 20
 
-  def self.top
-    joins("left join votes on votes.link_id = links.id")
-    .group("links.id, links.title")
-    .order("count(votes.id) desc")
-  end
+  # def self.top
+  #   joins("left join votes on votes.link_id = links.id")
+  #   .group("links.id, links.title")
+  #   .order("count(votes.id) desc")
+  # end
 end

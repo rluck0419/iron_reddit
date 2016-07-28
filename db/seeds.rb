@@ -10,9 +10,11 @@
 40.times do |i|
   user = User.create!(email: "user#{i+1}@example.com", password: "password")
   link = Link.create!(title: Faker::Name.name, url: "www.#{Faker::Name.name.downcase.gsub(/[. ']/, '')}.com", user: user)
-  if rand > 0.5
-    Upvote.create!(user_id: user.id, link_id: link.id)
-  else
-    Downvote.create!(user_id: user.id, link_id: link.id)
+  10.times do
+    if rand > 0.5
+      Upvote.create!(user_id: user.id, link_id: link.id)
+    else
+      Downvote.create!(user_id: user.id, link_id: link.id)
+    end
   end
 end

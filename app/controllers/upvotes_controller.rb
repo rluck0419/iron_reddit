@@ -1,58 +1,58 @@
 class UpvotesController < ApplicationController
   def index
-    render locals: { votes: Vote.all }
+    render locals: { upvotes: Upvote.all }
   end
 
   def show
-    if Vote.exists?(params[:id])
-      render locals: { vote: Vote.find(params[:id]) }
+    if Upvote.exists?(params[:id])
+      render locals: { upvote: Upvote.find(params[:id]) }
     else
-      render html: 'Vote not found', status: 404
+      render html: 'Upvote not found', status: 404
     end
   end
 
   def new
-    render locals: { vote: Vote.new }
+    render locals: { upvote: Upvote.new }
   end
 
   def create
-    vote = Vote.new(vote_params)
-    if vote.save
-      redirect_to "/links/#{vote.link_id}"
+    upvote = Upvote.new(upvote_params)
+    if upvote.save
+      redirect_to "/links/#{upvote.link_id}"
     else
       render :new
     end
   end
 
   def edit
-    render locals: { vote: Vote.find(params[:id]) }
+    render locals: { upvote: Upvote.find(params[:id]) }
   end
 
   def update
-    if Vote.find(params[:id])
-      vote = Vote.find(params[:id])
-      if vote.update(vote_params)
-        redirect_to vote
+    if Upvote.find(params[:id])
+      upvote = Upvote.find(params[:id])
+      if upvote.update(upvote_params)
+        redirect_to upvote
       else
         render :edit
       end
     else
-      render html: 'Vote not found', status: 404
+      render html: 'Upvote not found', status: 404
     end
   end
 
   def destroy
-    if Vote.exists?(params[:id])
-      Vote.destroy(params[:id])
-      flash[:notice] = "Vote destroyed."
-      redirect_to votes
+    if Upvote.exists?(params[:id])
+      Upvote.destroy(params[:id])
+      flash[:notice] = "Upvote destroyed."
+      redirect_to upvotes
     else
       flash[:alert] = "There was an error. Please try again."
     end
   end
 
   private
-  def vote_params
-    params.require(:vote).permit(:link_id)
+  def upvote_params
+    params.require(:upvote).permit(:link_id, :user_id)
   end
 end

@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
   def index
-    links = Link.top.page params[:page]
+    links = Link.group(:id).order("SUM(upvotes_count - downvotes_count) DESC").page params[:page]
     render locals: { links: links }
   end
 
