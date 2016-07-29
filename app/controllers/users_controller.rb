@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :destroy]
+
   def index
     render locals: { users: User.all }
   end

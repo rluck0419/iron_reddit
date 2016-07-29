@@ -1,0 +1,9 @@
+<h1>boards:</h1>
+
+<h2>
+  <% boards.each do |board| %>
+    <%= link_to board.name, board %>
+  <% end %>
+</h2>
+
+<%= paginate boards %>

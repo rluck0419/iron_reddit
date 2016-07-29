@@ -1,6 +1,9 @@
 class BoardsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+
   def index
-    render locals: { boards: Board.all }
+    boards = Board.all.page params[:page]
+    render locals: { boards: boards }
   end
 
   def show
@@ -20,7 +23,9 @@ class BoardsController < ApplicationController
     if board.save
       redirect_to board
     else
-      render :new
+      render :new, locals: {
+        board: board
+      }
     end
   end
 

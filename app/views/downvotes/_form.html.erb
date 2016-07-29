@@ -1,15 +1,15 @@
 <div><h3><%= form_title %></h3></div>
 
 <div>
-  <% if upvote.errors.any? %>
-    <% upvote.errors.full_messages.each do |msg| %>
+  <% if vote.errors.any? %>
+    <% vote.errors.full_messages.each do |msg| %>
       <p> <%= msg %></p>
     <% end %>
   <% end %>
 </div>
 
 <div>
-  <%= form_for(upvote) do |f| %>
+  <%= form_for(vote) do |f| %>
     <div>
       <label for="link_id">Link: </label>
       <%= f.select :link_id, options_from_collection_for_select(Link.all, :id, :title) %>

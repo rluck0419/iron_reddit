@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+
   def index
     links = Link.group(:id).order("SUM(upvotes_count - downvotes_count) DESC").page params[:page]
     render locals: { links: links }

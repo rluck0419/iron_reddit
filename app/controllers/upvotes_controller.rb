@@ -1,4 +1,6 @@
 class UpvotesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+
   def index
     render locals: { upvotes: Upvote.all }
   end
