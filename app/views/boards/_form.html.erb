@@ -1,0 +1,21 @@
+<div><h3><%= form_title %></h3></div>
+
+<div>
+  <% if board.errors.any? %>
+    <% board.errors.full_messages.each do |msg| %>
+      <p> <%= msg %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_for(board) do |f| %>
+    <div>
+      <label for="name">Name: </label>
+      <%= f.text_area :name, placeholder: Faker::Hacker.noun, class: 'form-field' %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
