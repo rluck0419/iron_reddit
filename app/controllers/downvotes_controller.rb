@@ -18,11 +18,23 @@ class DownvotesController < ApplicationController
   end
 
   def create
-    downvote = Downvote.new(downvote_params)
-    if downvote.save
-      redirect_to "/links/#{downvote.link_id}"
+    if params[:downvote][:user_id].nil?
+      flash[:alert] = "You must be logged in to do that."
+      redirect_back(fallback_location: root_path)
     else
-      render :new
+      downvote = Downvote.new(downvote_params)
+      if downvote.save
+        respond_to do |format|
+          format.json do
+            
+          end
+          format.html do
+            redirect_back(fallback_location: root_path)
+          end
+        end
+      else
+        render :new
+      end
     end
   end
 

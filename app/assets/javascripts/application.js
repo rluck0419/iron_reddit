@@ -14,3 +14,24 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+var daFunc = function () {
+  var id = $(this).data('id');
+  var vote_count = $(this).closest(".nav").find(".vote_count").text();
+  $(this).closest(".nav").find(".vote_count").text(parseInt(vote_count) + 1);
+};
+
+var daFunk = function () {
+  var id = $(this).data('id');
+  var vote_count = $(this).closest(".nav").find(".vote_count").text();
+  $(this).closest(".nav").find(".vote_count").text(parseInt(vote_count) - 1);
+};
+
+var ready = function () {
+  $(".upvote").on('click', daFunc);
+  $(".downvote").on('click', daFunk);
+}
+
+
+$(document).ready(ready);
+$(document).on("page:load", ready);

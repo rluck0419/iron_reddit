@@ -8,7 +8,9 @@ class BoardsController < ApplicationController
 
   def show
     if Board.exists?(params[:id])
-      render locals: { board: Board.find(params[:id]) }
+      board = Board.find(params[:id])
+      links = board.links.group(:id).order("SUM(upvotes_count - downvotes_count) DESC")
+      render locals: { board: board, links: links }
     else
       render html: 'Board not found', status: 404
     end

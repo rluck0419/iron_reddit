@@ -1,4 +1,4 @@
-<div class="row nav">
+<div class="row">
   <div class="col 2">
     <% Board.all.each do |board| %>
       <%= link_to "/r/#{board.name}", board, class: "header-board" %>
@@ -6,21 +6,19 @@
   </div>
 </div>
 
-
-<div class="nav main row">
-  <div class="col 2">
-    <h1><%= link_to 'Reddit', root_path  %></h1>
-  </div>
-  <div class="col 8 padding"></div>
-  <ul class="right butts">
+<nav>
+  <div class="nav-wrapper">
+    <%= link_to 'Reddit', root_path, class:"big" %>
+    <ul id="nav-mobile" class="right">
       <% if user_logged_in? %>
-        <%= link_to current_user.email, current_user, class:"waves-effect waves-light btn" %>
-        <%= link_to "Sign Out", sessions_sign_out_path, method: :DELETE, class:"waves-effect waves-light btn" %>
+        <li><%= link_to current_user.email, current_user %></li>
+        <li><%= link_to "Sign Out", sessions_sign_out_path, method: :DELETE %></li>
       <% else %>
-        <%= link_to "Sign In", sessions_sign_in_path, class:"waves-effect waves-light btn" %>
-        <%= link_to "Sign Up", new_user_path, class:"waves-effect waves-light btn" %>
+        <li><%= link_to "Sign In", sessions_sign_in_path %></li>
+        <li><%= link_to "Sign Up", new_user_path %></li>
       <% end %>
-      <%= link_to "New Post", new_link_path, class:"waves-effect waves-light btn" %>
-      <%= link_to "New Board", new_board_path, class:"waves-effect waves-light btn" %>
-  </ul>
-</div>
+      <li><%= link_to "New Post", new_link_path %></li>
+      <li><%= link_to "New Board", new_board_path %></li>
+    </ul>
+  </div>
+</nav>

@@ -18,11 +18,15 @@ class UpvotesController < ApplicationController
   end
 
   def create
-    upvote = Upvote.new(upvote_params)
-    if upvote.save
-      redirect_to "/links/#{upvote.link_id}"
+    if params[:upvote][:user_id].nil?
+      flash[:alert] = "You must be logged in to do that."
+      redirect_back(fallback_location: root_path)
     else
-      render :new
+      upvote = Upvote.new(upvote_params)
+      if upvote.save
+      else
+        render :new
+      end
     end
   end
 
