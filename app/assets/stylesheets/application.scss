@@ -51,6 +51,16 @@ $primary-color: color("blue", "lighten-2") !default;
   border-bottom: solid black 0.1em;
 }
 
+.hlable {
+  border-left: solid black 0.1em;
+  border-right: solid black 0.1em;
+  border-bottom: solid black 0.1em;
+}
+
+.highlight {
+  background-color: grey;
+}
+
 .header-board {
   padding: 1em;
 }

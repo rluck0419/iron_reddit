@@ -4,7 +4,7 @@
 </div>
 
 <% links.each do |link| %>
-  <div class="nav">
+  <div class="hlable">
     <div class="row">
       <%= link_to upvotes_path(upvote: { link_id: link.id, user_id: current_user.try(:id) }), method: :POST, remote: true, "data-id": link.id, class: "upvote col 12" do %>
         <i class="material-icons">thumb_up</i>

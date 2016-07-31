@@ -27,9 +27,19 @@ var daFunk = function () {
   $(this).closest(".nav").find(".vote_count").text(parseInt(vote_count) - 1);
 };
 
+var daHigh = function () {
+  $(this).addClass("highlight");
+}
+
+var daLow = function () {
+  $(this).removeClass("highlight");
+}
+
 var ready = function () {
   $(".upvote").on('click', daFunc);
   $(".downvote").on('click', daFunk);
+  $(".hlable").on('mouseenter', daHigh);
+  $(".hlable").on('mouseleave', daLow);
 }
 
 
