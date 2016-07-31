@@ -17,14 +17,14 @@
 
 var daFunc = function () {
   var id = $(this).data('id');
-  var vote_count = $(this).closest(".nav").find(".vote_count").text();
-  $(this).closest(".nav").find(".vote_count").text(parseInt(vote_count) + 1);
+  var vote_count = $(this).closest(".hlable").find(".vote_count").text();
+  $(this).closest(".hlable").find(".vote_count").text(parseInt(vote_count) + 1);
 };
 
 var daFunk = function () {
   var id = $(this).data('id');
-  var vote_count = $(this).closest(".nav").find(".vote_count").text();
-  $(this).closest(".nav").find(".vote_count").text(parseInt(vote_count) - 1);
+  var vote_count = $(this).closest(".hlable").find(".vote_count").text();
+  $(this).closest(".hlable").find(".vote_count").text(parseInt(vote_count) - 1);
 };
 
 var daHigh = function () {
@@ -36,10 +36,10 @@ var daLow = function () {
 }
 
 var ready = function () {
-  $(".upvote").on('click', daFunc);
-  $(".downvote").on('click', daFunk);
   $(".hlable").on('mouseenter', daHigh);
   $(".hlable").on('mouseleave', daLow);
+  $(".upvote").on('click', daFunc);
+  $(".downvote").on('click', daFunk);
 }
 
 
