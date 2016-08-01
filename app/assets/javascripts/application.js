@@ -42,6 +42,5 @@ var ready = function () {
   $(".downvote").on('click', daFunk);
 }
 
-
 $(document).ready(ready);
 $(document).on("page:load", ready);

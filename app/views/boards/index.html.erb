@@ -1,9 +1,9 @@
 <h1>boards:</h1>
 
-<h2>
-  <% boards.each do |board| %>
-    <%= link_to board.name, board %>
-  <% end %>
-</h2>
+
+<% boards.each do |board| %>
+    <div class="hlable"><%= link_to board.name, board %></div>
+<% end %>
+
 
 <%= paginate boards %>

@@ -1,4 +1,20 @@
-<h1>link:</h1>
-<div><%= link.title %></div>
-<div><%= link.url %></div>
-<div><%= link.votes.count %> votes</div>
+<div class="htable">
+  <div class="row">
+    <%= link_to upvotes_path(upvote: { link_id: link.id, user_id: current_user.try(:id) }), method: :POST, remote: true, "data-id": link.id, class: "upvote col 12" do %>
+      <i class="material-icons">thumb_up</i>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="vote_count col 2">
+      <%= link.upvotes_count - link.downvotes_count %>
+    </div>
+    <div class="col 2">
+    <%= link_to link.title, link %>
+    </div>
+  </div>
+  <div class="row">
+    <%= link_to downvotes_path(downvote: { link_id: link.id, user_id: current_user.try(:id) }), method: :POST, remote: true, "data-id": link.id, class: "downvote col 12" do %>
+      <i class="material-icons">thumb_down</i>
+    <% end %>
+  </div>
+</div>
