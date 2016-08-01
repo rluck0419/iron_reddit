@@ -17,7 +17,7 @@ class BoardsController < ApplicationController
   end
 
   def new
-    render locals: { downvote: Board.new }
+    render locals: { board: Board.new }
   end
 
   def create
@@ -25,9 +25,7 @@ class BoardsController < ApplicationController
     if board.save
       redirect_to board
     else
-      render :new, locals: {
-        board: board
-      }
+      render :new, locals: { board: board }
     end
   end
 

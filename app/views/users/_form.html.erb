@@ -1,0 +1,30 @@
+<div><h3><%= form_title %></h3></div>
+
+<div>
+  <% if user.errors.any? %>
+    <% user.errors.full_messages.each do |msg| %>
+      <p> <%= msg %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+
+  <%= form_for(user) do |f| %>
+    <div>
+      <label for="email">Email: </label>
+      <%= f.text_area :email, placeholder: "#{Faker::Name.name.downcase.gsub(/[. ]/, '')}@place.com", class: 'form-field' %>
+    </div>
+
+    <div>
+      <label for="password">Password: </label>
+      <%= f.text_area :password, class: 'form-field' %>
+    </div>
+
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+</div>

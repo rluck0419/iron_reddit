@@ -21,7 +21,7 @@ class LinksController < ApplicationController
   def create
     link = Link.new(link_params)
     if link.save
-      redirect_to link_path(link)
+      redirect_to link
     else
       render :new
     end
