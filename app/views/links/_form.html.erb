@@ -22,6 +22,11 @@
     </div>
 
     <div>
+      <label for="board_id">Board: </label>
+      <%= f.select :board_id, options_from_collection_for_select(Board.all, :id, :name) %>
+    </div>
+
+    <div>
       <%= f.submit %>
     </div>
   <% end %>

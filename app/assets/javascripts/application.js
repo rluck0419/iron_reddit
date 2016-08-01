@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require materialize-sprockets
 //= require_tree .
+
+
 
 var daFunc = function () {
   var id = $(this).data('id');
@@ -40,7 +43,7 @@ var ready = function () {
   $(".hlable").on('mouseleave', daLow);
   $(".upvote").on('click', daFunc);
   $(".downvote").on('click', daFunk);
+  $("select").material_select();
 }
 
-$(document).ready(ready);
-$(document).on("page:load", ready);
+$(document).on("turbolinks:load ready", ready);

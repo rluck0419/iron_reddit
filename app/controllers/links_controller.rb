@@ -20,10 +20,13 @@ class LinksController < ApplicationController
 
   def create
     link = Link.new(link_params)
+    link.user = current_user
     if link.save
       redirect_to link
     else
-      render :new
+      render :new, locals: {
+        link: link
+      }
     end
   end
 
@@ -56,6 +59,6 @@ class LinksController < ApplicationController
 
   private
   def link_params
-    params.require(:link).permit(:title, :url)
+    params.require(:link).permit(:title, :url, :board_id)
   end
 end
